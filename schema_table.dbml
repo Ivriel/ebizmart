@@ -1,0 +1,84 @@
+Table User {
+  id integer [primary key]
+  nama_user varchar(30)
+  username varchar(30)
+  password varchar(30)
+  role Role
+  alamat text
+}
+
+Enum Role {
+  owner
+  admin
+  pelanggan
+}
+
+Table Kategori {
+  id integer [primary key]
+  nama_kategori varchar(45)
+}
+
+Table Pembayaran {
+  id integer [primary key]
+  nama_pembayaran Pembayaran
+}
+
+Enum Pembayaran {
+  Cash
+  Transfer
+  Kredit
+}
+
+Table Penjualan {
+  id integer [primary key]
+  pembayaran_id int
+  user_id int
+  tanggal Date
+  total bigint
+  status_transaksi StatusTransaksi
+}
+
+Enum StatusTransaksi {
+  Belum_bayar
+  Dalam_proses
+  Selesai
+  Gagal
+}
+
+Table Barang {
+  id integer [primary key]
+  kategori_id int
+  nama_barang varchar
+  harga_barang int
+  keterangan_barang text
+  stok_barang int
+  exp_barang Date
+  status_ketersediaan StatusKetersediaan
+}
+
+Enum StatusKetersediaan {
+  Tersedia
+  Habis
+  Pre_Order
+}
+
+Table Detail_Transaksi {
+  id integer [primary key]
+  barang_id int
+  penjualan_id int
+  jumlah int
+  harga_satuan int
+  subtotal int
+}
+
+
+Ref: Barang.kategori_id > Kategori.id
+
+Ref: Penjualan.user_id > User.id
+
+Ref: Penjualan.pembayaran_id > Pembayaran.id
+
+Ref: Detail_Transaksi.penjualan_id > Penjualan.id
+
+Ref: Detail_Transaksi.barang_id > Barang.id
+
