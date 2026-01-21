@@ -24,6 +24,10 @@
                         {{ __('Payment') }}
                     </x-nav-link>
 
+                    <x-nav-link :href="route('stuffs.index')" :active="request()->routeIs('stuffs.*')">
+                        {{ __('Stuff') }}
+                    </x-nav-link>
+
                 </div>
             </div>
 
@@ -93,6 +97,10 @@
 
             <x-responsive-nav-link :href="route('payments.index')" :active="request()->routeIs('payments.*')">
                 {{ __('Payment') }}
+            </x-responsive-nav-link>
+
+            <x-responsive-nav-link :href="route('stuffs.index')" :active="request()->routeIs('stuffs.*')">
+                {{ __('Stuff') }}
             </x-responsive-nav-link>
 
         </div>

@@ -11,6 +11,7 @@ class Stuff extends Model
     protected $fillable = [
         'category_id',
         'nama_barang',
+        'image',
         'harga_barang',
         'keterangan_barang',
         'stok_barang',
