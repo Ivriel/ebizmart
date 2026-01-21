@@ -16,17 +16,19 @@
                         {{ __('Dashboard') }}
                     </x-nav-link>
 
-                    <x-nav-link :href="route('categories.index')" :active="request()->routeIs('categories.*')">
-                        {{ __('Category') }}
-                    </x-nav-link>
+                    @if (auth()->user()->role === 'owner' || auth()->user()->role === 'admin')
+                        <x-nav-link :href="route('categories.index')" :active="request()->routeIs('categories.*')">
+                            {{ __('Category') }}
+                        </x-nav-link>
 
-                    <x-nav-link :href="route('payments.index')" :active="request()->routeIs('payments.*')">
-                        {{ __('Payment') }}
-                    </x-nav-link>
+                        <x-nav-link :href="route('payments.index')" :active="request()->routeIs('payments.*')">
+                            {{ __('Payment') }}
+                        </x-nav-link>
 
-                    <x-nav-link :href="route('stuffs.index')" :active="request()->routeIs('stuffs.*')">
-                        {{ __('Stuff') }}
-                    </x-nav-link>
+                        <x-nav-link :href="route('stuffs.index')" :active="request()->routeIs('stuffs.*')">
+                            {{ __('Stuff') }}
+                        </x-nav-link>
+                    @endif
 
                 </div>
             </div>
@@ -91,17 +93,19 @@
                 {{ __('Dashboard') }}
             </x-responsive-nav-link>
 
-            <x-responsive-nav-link :href="route('categories.index')" :active="request()->routeIs('categories.*')">
-                {{ __('Category') }}
-            </x-responsive-nav-link>
+            @if (auth()->user()->role === 'owner' || auth()->user()->role === 'admin')
+                <x-responsive-nav-link :href="route('categories.index')" :active="request()->routeIs('categories.*')">
+                    {{ __('Category') }}
+                </x-responsive-nav-link>
 
-            <x-responsive-nav-link :href="route('payments.index')" :active="request()->routeIs('payments.*')">
-                {{ __('Payment') }}
-            </x-responsive-nav-link>
+                <x-responsive-nav-link :href="route('payments.index')" :active="request()->routeIs('payments.*')">
+                    {{ __('Payment') }}
+                </x-responsive-nav-link>
 
-            <x-responsive-nav-link :href="route('stuffs.index')" :active="request()->routeIs('stuffs.*')">
-                {{ __('Stuff') }}
-            </x-responsive-nav-link>
+                <x-responsive-nav-link :href="route('stuffs.index')" :active="request()->routeIs('stuffs.*')">
+                    {{ __('Stuff') }}
+                </x-responsive-nav-link>
+            @endif
 
         </div>
 

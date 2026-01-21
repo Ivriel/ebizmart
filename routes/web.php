@@ -14,9 +14,9 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/dashboard', function () {
         return view('dashboard');
     })->name('dashboard');
-    Route::resource('categories', CategoryController::class)->except('show');
-    Route::resource('payments', PaymentController::class)->except('show');
-    Route::resource('stuffs', StuffController::class);
+    Route::resource('categories', CategoryController::class)->except('show')->middleware('role:owener,admin');
+    Route::resource('payments', PaymentController::class)->except('show')->middleware('role:owner,admin');
+    Route::resource('stuffs', StuffController::class)->middleware('role:owner,admin');
 });
 
 Route::middleware('auth')->group(function () {
