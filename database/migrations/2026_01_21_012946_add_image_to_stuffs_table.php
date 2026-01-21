@@ -11,19 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('payments', function (Blueprint $table) {
-            $table->id();
-            $table->string('nama_pembayaran');
-            $table->boolean('is_active')->default(true);
-            $table->timestamps();
+        Schema::table('stuffs', function (Blueprint $table) {
+            $table->string('image')->nullable()->after('nama_barang');
         });
     }
 
-    /**
-     * Reverse the migrations.
-     */
     public function down(): void
     {
-        Schema::dropIfExists('payments');
+        Schema::table('stuffs', function (Blueprint $table) {
+            $table->dropColumn('image');
+        });
     }
 };

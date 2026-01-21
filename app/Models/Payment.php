@@ -9,6 +9,7 @@ class Payment extends Model
 {
     protected $fillable = [
         'nama_pembayaran',
+        'is_active',
     ];
 
     public function sales(): HasMany
