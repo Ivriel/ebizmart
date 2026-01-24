@@ -38,6 +38,9 @@
                         </x-nav-link>
                     @endif
 
+                    <x-nav-link :href="route('history.index')" :active="request()->routeIs('history.*')">
+                        {{ __('History') }}
+                    </x-nav-link>
                 </div>
             </div>
 
@@ -123,6 +126,10 @@
                     {{ __('Cart') }}
                 </x-responsive-nav-link>
             @endif
+
+            <x-responsive-nav-link :href="route('history.index')" :active="request()->routeIs('history.*')">
+                {{ __('History') }}
+            </x-responsive-nav-link>
 
         </div>
 

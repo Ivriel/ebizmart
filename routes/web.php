@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\CheckoutController;
+use App\Http\Controllers\HistoryTransactionController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\ProductListController;
 use App\Http\Controllers\ProfileController;
@@ -29,9 +31,12 @@ Route::middleware(['auth', 'verified', 'role:pelanggan'])->group(function () {
     Route::delete('/cart/remove/{id}', [CartController::class, 'remove'])->name('cart.remove');
     Route::delete('/cart/clear', [CartController::class, 'clear'])->name('cart.clear');
     // Checkout routes
-    Route::get('/checkout', [App\Http\Controllers\CheckoutController::class, 'index'])->name('checkout.index');
-    Route::post('/checkout', [App\Http\Controllers\CheckoutController::class, 'store'])->name('checkout.store');
-    Route::get('/checkout/success/{id}', [App\Http\Controllers\CheckoutController::class, 'success'])->name('checkout.success');
+    Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout.index');
+    Route::post('/checkout', [CheckoutController::class, 'store'])->name('checkout.store');
+    Route::get('/checkout/success/{id}', [CheckoutController::class, 'success'])->name('checkout.success');
+
+    Route::get('/history', [HistoryTransactionController::class, 'index'])->name('history.index');
+    Route::get('/history/detail/{id}', [HistoryTransactionController::class, 'detail'])->name('history.show');
 });
 
 Route::middleware('auth')->group(function () {
