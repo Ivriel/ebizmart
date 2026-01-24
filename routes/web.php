@@ -1,7 +1,9 @@
 <?php
 
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\PaymentController;
+use App\Http\Controllers\ProductListController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\StuffController;
 use Illuminate\Support\Facades\Route;
@@ -14,9 +16,22 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/dashboard', function () {
         return view('dashboard');
     })->name('dashboard');
-    Route::resource('categories', CategoryController::class)->except('show')->middleware('role:owener,admin');
+    Route::resource('categories', CategoryController::class)->except('show')->middleware('role:owner,admin');
     Route::resource('payments', PaymentController::class)->except('show')->middleware('role:owner,admin');
     Route::resource('stuffs', StuffController::class)->middleware('role:owner,admin');
+    Route::resource('productList', ProductListController::class)->except('delete', 'update', 'edit')->middleware('role:pelanggan');
+});
+
+Route::middleware(['auth', 'verified', 'role:pelanggan'])->group(function () {
+    Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
+    Route::post('/cart/add/{id}', [CartController::class, 'add'])->name('cart.add');
+    Route::put('/cart/update/{id}', [CartController::class, 'update'])->name('cart.update');
+    Route::delete('/cart/remove/{id}', [CartController::class, 'remove'])->name('cart.remove');
+    Route::delete('/cart/clear', [CartController::class, 'clear'])->name('cart.clear');
+    // Checkout routes
+    Route::get('/checkout', [App\Http\Controllers\CheckoutController::class, 'index'])->name('checkout.index');
+    Route::post('/checkout', [App\Http\Controllers\CheckoutController::class, 'store'])->name('checkout.store');
+    Route::get('/checkout/success/{id}', [App\Http\Controllers\CheckoutController::class, 'success'])->name('checkout.success');
 });
 
 Route::middleware('auth')->group(function () {

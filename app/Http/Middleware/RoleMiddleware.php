@@ -22,7 +22,7 @@ class RoleMiddleware
         $user = auth()->user();
 
         if (in_array($user->role, $roles)) {
-            return next($request);
+            return $next($request);
         }
 
         abort(403, 'Anda tidak memiliki akses ke halaman ini.Role Anda: '.$user->role);
