@@ -84,6 +84,19 @@
                                 class="w-full text-center py-2.5 text-sm font-bold text-white bg-gray-900 dark:bg-indigo-600 hover:bg-gray-800 dark:hover:bg-indigo-700 rounded-xl transition-all shadow-md">
                                 Lihat Detail
                             </a>
+
+                            <form action="{{ route('wishlist.add', $item->id) }}" method="POST">
+                                @csrf
+                                <button type="submit"
+                                    class="py-2.5 px-3 text-sm font-bold text-rose-600 bg-rose-50 hover:bg-rose-100 dark:bg-rose-900/20 dark:text-rose-400 dark:hover:bg-rose-900/40 rounded-xl transition-all shadow-md">
+                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z">
+                                        </path>
+                                    </svg>
+                                </button>
+                            </form>
+
                             <form action="{{ route('cart.add', $item->id) }}" method="POST" class="flex-1">
                                 @csrf
                                 <button type="submit"

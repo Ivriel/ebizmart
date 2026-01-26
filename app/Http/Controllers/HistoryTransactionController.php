@@ -9,7 +9,7 @@ class HistoryTransactionController extends Controller
 {
     public function index()
     {
-        $user = auth()->user();
+        $user = auth()->guard()->user();
         if ($user->role === 'pelanggan') {
             $sales = Sale::with(['payment', 'user'])->where('user_id', $user->id)->latest()->get();
         } else {

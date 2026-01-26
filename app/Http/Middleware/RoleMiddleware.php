@@ -19,7 +19,7 @@ class RoleMiddleware
             return redirect()->route('login');
         }
 
-        $user = auth()->user();
+        $user = auth()->guard()->user();
 
         if (in_array($user->role, $roles)) {
             return $next($request);

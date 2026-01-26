@@ -28,4 +28,9 @@ class Stuff extends Model
     {
         return $this->hasMany(DetailTransaction::class);
     }
+
+    public function wishlists(): HasMany
+    {
+        return $this->hasMany(Wishlist::class);
+    }
 }

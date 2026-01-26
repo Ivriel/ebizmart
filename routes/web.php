@@ -8,6 +8,7 @@ use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\ProductListController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\StuffController;
+use App\Http\Controllers\WishlistController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -22,6 +23,14 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::resource('payments', PaymentController::class)->except('show')->middleware('role:owner,admin');
     Route::resource('stuffs', StuffController::class)->middleware('role:owner,admin');
     Route::resource('productList', ProductListController::class)->except('delete', 'update', 'edit')->middleware('role:pelanggan');
+
+    Route::get('/history', [HistoryTransactionController::class, 'index'])->name('history.index');
+    Route::get('/history/detail/{id}', [HistoryTransactionController::class, 'detail'])->name('history.show');
+
+    Route::get('wishlist', [WishlistController::class, 'index'])->name('wishlist.index');
+    Route::post('wishlist/add/{id}', [WishlistController::class, 'add'])->name('wishlist.add');
+    Route::delete('wishlist/remove/{id}', [WishlistController::class, 'remove'])->name('wishlist.remove');
+    Route::delete('wishlist/clear', [WishlistController::class, 'clear'])->name('wishlist.clear');
 });
 
 Route::middleware(['auth', 'verified', 'role:pelanggan'])->group(function () {
@@ -34,9 +43,6 @@ Route::middleware(['auth', 'verified', 'role:pelanggan'])->group(function () {
     Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout.index');
     Route::post('/checkout', [CheckoutController::class, 'store'])->name('checkout.store');
     Route::get('/checkout/success/{id}', [CheckoutController::class, 'success'])->name('checkout.success');
-
-    Route::get('/history', [HistoryTransactionController::class, 'index'])->name('history.index');
-    Route::get('/history/detail/{id}', [HistoryTransactionController::class, 'detail'])->name('history.show');
 });
 
 Route::middleware('auth')->group(function () {
