@@ -4,7 +4,7 @@
             <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
                 {{ __('Detail Transaksi') }} #{{ $transaction->id }}
             </h2>
-            <div class="flex items-center gap-4 no-print"> {{-- Tambah class no-print di sini --}}
+            <div class="flex items-center gap-2 no-print">
                 <button onclick="window.print()"
                     class="inline-flex items-center px-4 py-2 bg-gray-800 dark:bg-gray-200 border border-transparent rounded-lg font-bold text-xs text-white dark:text-gray-800 uppercase tracking-widest hover:bg-gray-700 dark:hover:bg-white transition shadow-lg">
                     <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -12,17 +12,20 @@
                             d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z">
                         </path>
                     </svg>
-                    Cetak Invoice
+                    Print Browser
                 </button>
 
-                <a href="{{ route('history.index') }}"
-                    class="inline-flex items-center text-sm font-medium text-indigo-600 hover:text-indigo-500 transition">
-                    <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <a href="{{ route('checkout.print', $transaction->id) }}" target="_blank"
+                    class="inline-flex items-center px-4 py-2 bg-emerald-600 border border-transparent rounded-lg font-bold text-xs text-white uppercase tracking-widest hover:bg-emerald-700 transition shadow-lg">
+                    <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
+                            d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M9 19l3 3m0 0l3-3m-3 3V10">
+                        </path>
                     </svg>
-                    Kembali
+                    Download PDF
                 </a>
+
+                <a href="{{ route('history.index') }}" class="..."> Kembali </a>
             </div>
         </div>
     </x-slot>

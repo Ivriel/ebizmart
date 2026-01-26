@@ -49,9 +49,10 @@ class WishlistController extends Controller
     {
         $user = auth()->guard()->user();
 
-        $wishlist = Wishlist::where('user_id', $user->id)
-            ->where('stuff_id', $id)
-            ->findOrFail();
+        $wishlist = Wishlist::where('id', $id)
+            ->where('user_id', $user->id)
+            ->firstOrFail();
+
         $wishlist->delete();
 
         return back()->with('success', 'Berhasil menghapus wishlist');

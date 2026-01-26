@@ -6,6 +6,7 @@ use App\Models\DetailTransaction;
 use App\Models\Payment;
 use App\Models\Sale;
 use App\Models\Stuff;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -157,5 +158,20 @@ class CheckoutController extends Controller
         return view('checkout.success', [
             'sale' => $sale,
         ]);
+    }
+
+    public function printReceipt($id)
+    {
+        $sale = Sale::with(['user', 'detailTransactions.stuff'])->findOrFail($id);
+        $data = [
+            'sale' => $sale,
+            'tanggal' => now()->format('d/m/Y H:i:s'),
+        ];
+
+        $pdf = Pdf::loadView('checkout.receipt', $data);
+        // Set ukuran kertas (opsional: khusus struk thermal biasanya 80mm x 200mm atau A4)
+        $pdf->setPaper([0, 0, 600, 800], 'portrait');
+
+        return $pdf->stream('struk-transaksi-'.$sale->id.'.pdf');
     }
 }

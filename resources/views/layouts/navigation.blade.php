@@ -37,11 +37,11 @@
                             {{ __('Cart') }}
                         </x-nav-link>
 
-                        <x-nav-link :href="route('wishlist.index')" :active="request()->routeIs('wishlist.*')">
-                            {{ __('Wishlist') }}
-                        </x-nav-link>
-
                     @endif
+                    <x-nav-link :href="route('wishlist.index')" :active="request()->routeIs('wishlist.*')">
+                        {{ __('Wishlist') }}
+                    </x-nav-link>
+
                     <x-nav-link :href="route('history.index')" :active="request()->routeIs('history.*')">
                         {{ __('History') }}
                     </x-nav-link>
@@ -129,10 +129,11 @@
                     {{ __('Cart') }}
                 </x-responsive-nav-link>
 
-                <x-responsive-nav-link :href="route('wishlist.index')" :active="request()->routeIs('wishlist.*')">
-                    {{ __('Wishlist') }}
-                </x-responsive-nav-link>
             @endif
+
+            <x-responsive-nav-link :href="route('wishlist.index')" :active="request()->routeIs('wishlist.*')">
+                {{ __('Wishlist') }}
+            </x-responsive-nav-link>
 
             <x-responsive-nav-link :href="route('history.index')" :active="request()->routeIs('history.*')">
                 {{ __('History') }}

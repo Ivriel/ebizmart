@@ -31,6 +31,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::post('wishlist/add/{id}', [WishlistController::class, 'add'])->name('wishlist.add');
     Route::delete('wishlist/remove/{id}', [WishlistController::class, 'remove'])->name('wishlist.remove');
     Route::delete('wishlist/clear', [WishlistController::class, 'clear'])->name('wishlist.clear');
+    Route::get('/checkout/print/{id}', [CheckoutController::class, 'printReceipt'])->name('checkout.print');
 });
 
 Route::middleware(['auth', 'verified', 'role:pelanggan'])->group(function () {

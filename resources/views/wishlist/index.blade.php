@@ -20,7 +20,7 @@
                                     <div class="mb-4">
                                         <h4 class="text-lg font-bold">{{ $item->stuff->nama_barang }}</h4>
                                         <p class="text-sm text-gray-500 dark:text-gray-400">
-                                            Ditambahkan pada: {{ $item->created_at->format('d M Y') }}
+                                            Ditambahkan pada: {{ $item->created_at->format('d M Y H:i:s') }}
                                         </p>
                                     </div>
 
@@ -35,15 +35,17 @@
                                                 Lihat
                                             </a>
 
-                                            <form action="{{ route('wishlist.remove', $item->id) }}" method="POST"
-                                                onsubmit="return confirm('Hapus {{ $item->stuff->nama_barang }} dari wishlist?')">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button type="submit"
-                                                    class="inline-flex items-center px-3 py-1 bg-red-600 text-white text-xs rounded-md hover:bg-red-700 transition">
-                                                    Hapus
-                                                </button>
-                                            </form>
+                                            @if (auth()->guard()->user()->role === 'pelanggan')
+                                                <form action="{{ route('wishlist.remove', $item->id) }}" method="POST"
+                                                    onsubmit="return confirm('Hapus {{ $item->stuff->nama_barang }} dari wishlist?')">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit"
+                                                        class="inline-flex items-center px-3 py-1 bg-red-600 text-white text-xs rounded-md hover:bg-red-700 transition">
+                                                        Hapus
+                                                    </button>
+                                                </form>
+                                            @endif
                                         </div>
                                     </div>
                                 </div>
