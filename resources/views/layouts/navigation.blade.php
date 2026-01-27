@@ -28,16 +28,14 @@
                         <x-nav-link :href="route('stuffs.index')" :active="request()->routeIs('stuffs.*')">
                             {{ __('Stuff') }}
                         </x-nav-link>
-                    @else
-                        <x-nav-link :href="route('productList.index')" :active="request()->routeIs('productList.*')">
-                            {{ __('Product List') }}
-                        </x-nav-link>
-
-                        <x-nav-link :href="route('cart.index')" :active="request()->routeIs('cart.*')">
-                            {{ __('Cart') }}
-                        </x-nav-link>
-
                     @endif
+                    <x-nav-link :href="route('productList.index')" :active="request()->routeIs('productList.*')">
+                        {{ __('Product List') }}
+                    </x-nav-link>
+
+                    <x-nav-link :href="route('cart.index')" :active="request()->routeIs('cart.*')">
+                        {{ __('Cart') }}
+                    </x-nav-link>
                     <x-nav-link :href="route('wishlist.index')" :active="request()->routeIs('wishlist.*')">
                         {{ __('Wishlist') }}
                     </x-nav-link>
@@ -120,16 +118,15 @@
                 <x-responsive-nav-link :href="route('stuffs.index')" :active="request()->routeIs('stuffs.*')">
                     {{ __('Stuff') }}
                 </x-responsive-nav-link>
-            @else
-                <x-responsive-nav-link :href="route('productList.index')" :active="request()->routeIs('productList.*')">
-                    {{ __('Product List') }}
-                </x-responsive-nav-link>
-
-                <x-responsive-nav-link :href="route('cart.index')" :active="request()->routeIs('cart.*')">
-                    {{ __('Cart') }}
-                </x-responsive-nav-link>
-
             @endif
+
+            <x-responsive-nav-link :href="route('productList.index')" :active="request()->routeIs('productList.*')">
+                {{ __('Product List') }}
+            </x-responsive-nav-link>
+
+            <x-responsive-nav-link :href="route('cart.index')" :active="request()->routeIs('cart.*')">
+                {{ __('Cart') }}
+            </x-responsive-nav-link>
 
             <x-responsive-nav-link :href="route('wishlist.index')" :active="request()->routeIs('wishlist.*')">
                 {{ __('Wishlist') }}
