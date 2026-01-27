@@ -13,11 +13,19 @@ class UserSeeder extends Seeder
      */
     public function run(): void
     {
+        // User::create([
+        //     'nama_user' => 'Administrator',
+        //     'username' => 'admin_toko',
+        //     'password' => Hash::make('password123'), // Pastikan di-hash
+        //     'role' => 'admin',
+        //     'alamat' => 'Jl. Raya No. 123, Malang',
+        // ]);
+
         User::create([
-            'nama_user' => 'Administrator',
-            'username' => 'admin_toko',
+            'nama_user' => 'Owner',
+            'username' => 'owner_toko',
             'password' => Hash::make('password123'), // Pastikan di-hash
-            'role' => 'admin',
+            'role' => 'owner',
             'alamat' => 'Jl. Raya No. 123, Malang',
         ]);
     }
