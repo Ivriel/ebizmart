@@ -1,14 +1,31 @@
 <x-app-layout>
     <x-slot name="header">
         <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 py-4">
-            <div:>
+            <div:::>
                 <h2 class="font-black text-3xl text-gray-900 dark:text-white tracking-tight">
                     {{ __('Katalog Produk') }}
                 </h2>
                 <p class="text-sm text-gray-500 dark:text-gray-400 mt-1">Kelola dan pantau stok barang Anda dengan mudah.
                 </p>
-            </div: </div>
     </x-slot>
+
+    <div class="my-8 mx-4 flex flex-col md:flex-row gap-4 text-white">
+        <form action="{{ route('productList.index') }}" method="GET" class="flex-grow flex gap-2">
+            <input type="text" name="search" value="{{ request('search') }}" placeholder="Cari produk favoritmu..."
+                class="w-full rounded-xl border-gray-200 dark:bg-gray-800 dark:border-gray-700">
+            <button type="submit" class="bg-indigo-600 text-white px-6 py-2 rounded-xl">Cari</button>
+        </form>
+
+        <form action="{{ route('productList.index') }}" method="GET">
+            <input type="hidden" name="search" value="{{ request('search') }}">
+            <select name="sort" onchange="this.form.submit()"
+                class="rounded-xl border-gray-200 dark:bg-gray-800 dark:border-gray-700">
+                <option value="">Terbaru</option>
+                <option value="termurah" {{ request('sort') == 'termurah' ? 'selected' : '' }}>Harga Termurah</option>
+                <option value="termahal" {{ request('sort') == 'termahal' ? 'selected' : '' }}>Harga Termahal</option>
+            </select>
+        </form>
+    </div>
 
     <div class="py-12 bg-gray-50/50 dark:bg-gray-950">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -146,6 +163,10 @@
                     </div>
                 @empty
                 @endforelse
+            </div>
+            <div class="mt-10">
+                Test
+                {{ $products->links() }}
             </div>
         </div>
     </div>

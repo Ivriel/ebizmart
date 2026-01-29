@@ -22,7 +22,7 @@
                                 <h3 class="text-lg font-medium text-gray-900 dark:text-gray-100 mb-4">Foto Produk</h3>
                                 <div
                                     class="aspect-square rounded-xl overflow-hidden bg-gray-100 dark:bg-gray-700 border border-gray-200 dark:border-gray-600">
-                                    @if($product->image)
+                                    @if ($product->image)
                                         <img src="{{ asset('storage/' . $product->image) }}"
                                             alt="{{ $product->nama_barang }}" class="w-full h-full object-cover">
                                     @else
@@ -76,11 +76,16 @@
                                         <dd class="mt-1">
                                             @php
                                                 $statusColors = [
-                                                    'Tersedia' => 'bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-400',
-                                                    'Habis' => 'bg-red-100 text-red-800 dark:bg-red-900/30 dark:text-red-400',
-                                                    'Pre_Order' => 'bg-amber-100 text-amber-800 dark:bg-amber-900/30 dark:text-amber-400',
+                                                    'Tersedia' =>
+                                                        'bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-400',
+                                                    'Habis' =>
+                                                        'bg-red-100 text-red-800 dark:bg-red-900/30 dark:text-red-400',
+                                                    'Pre_Order' =>
+                                                        'bg-amber-100 text-amber-800 dark:bg-amber-900/30 dark:text-amber-400',
                                                 ];
-                                                $color = $statusColors[$product->status_ketersediaan] ?? 'bg-gray-100 text-gray-800';
+                                                $color =
+                                                    $statusColors[$product->status_ketersediaan] ??
+                                                    'bg-gray-100 text-gray-800';
                                             @endphp
                                             <span
                                                 class="px-3 py-1 rounded-full text-xs font-bold uppercase {{ $color }}">
@@ -106,7 +111,7 @@
                                     Edit Data
                                 </a>
                                 <form action="{{ route('stuffs.destroy', $product->id) }}" method="POST"
-                                    onsubmit="return confirm('Apakah Anda yakin?')">
+                                    onsubmit="return confirm('Apakah Anda yakin untuk menghapus {{ $product->nama_barang }}?')">
                                     @csrf @method('DELETE')
                                     <button type="submit"
                                         class="inline-flex items-center px-4 py-2 bg-red-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-red-700 transition shadow-sm">

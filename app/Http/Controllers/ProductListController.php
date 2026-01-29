@@ -10,9 +10,25 @@ class ProductListController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $products = Stuff::with('category')->get();
+        $query = Stuff::with('category');
+
+        // 1 . logika search
+        $query->when($request->search, function ($q) use ($request) {
+            return $q->where('nama_barang', 'like', '%'.$request->search.'%');
+        });
+
+        // logik sorting
+        if ($request->sort == 'termurah') {
+            $query->orderBy('harga_barang', 'asc');
+        } elseif ($request->sort == 'termahal') {
+            $query->orderBy('harga_barang', 'desc');
+        } else {
+            $query->latest(); // defaultnya produk terbaru
+        }
+
+        $products = $query->paginate(8)->withQueryString();
 
         return view('productList.index', [
             'products' => $products,

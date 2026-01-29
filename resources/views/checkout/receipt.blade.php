@@ -41,7 +41,7 @@
 
     <p>
         No. Struk : {{ $sale->id }}<br>
-        Kasir : {{ $sale->user->nama_user }}<br>
+        Atas nama : {{ $sale->user->nama_user }}<br>
         Tanggal : {{ \Carbon\Carbon::parse($sale->tanggal)->format('d/m/Y H:i:s') }}
     </p>
     <hr>
