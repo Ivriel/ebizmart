@@ -30,6 +30,10 @@
                         <x-nav-link :href="route('stuffs.index')" :active="request()->routeIs('stuffs.*')">
                             {{ __('Stuff') }}
                         </x-nav-link>
+
+                        <x-nav-link :href="route('admin.sales.index')" :active="request()->routeIs('admin.sales.*')">
+                            {{ __('Transaksi') }}
+                        </x-nav-link>
                     @endif
                     <x-nav-link :href="route('productList.index')" :active="request()->routeIs('productList.*')">
                         {{ __('Product List') }}
@@ -120,6 +124,10 @@
 
                 <x-responsive-nav-link :href="route('stuffs.index')" :active="request()->routeIs('stuffs.*')">
                     {{ __('Stuff') }}
+                </x-responsive-nav-link>
+
+                <x-responsive-nav-link :href="route('admin.sales.index')" :active="request()->routeIs('admin.sales.*')">
+                    {{ __('Transaksi') }}
                 </x-responsive-nav-link>
             @endif
 

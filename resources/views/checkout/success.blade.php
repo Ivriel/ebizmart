@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-extrabold text-2xl text-gray-900 dark:text-white tracking-tight">
-            {{ __('Pembayaran Berhasil') }}
+            {{ __('Checkout Berhasil') }}
         </h2>
     </x-slot>
 
@@ -19,7 +19,7 @@
                         </svg>
                     </div>
                     <div>
-                        <h3 class="text-xl font-bold text-green-800 dark:text-green-200">Pembayaran Berhasil!</h3>
+                        <h3 class="text-xl font-bold text-green-800 dark:text-green-200">Checkout Berhasil!</h3>
                         <p class="text-green-700 dark:text-green-300 mt-1">Terima kasih atas pembelian Anda.</p>
                     </div>
                 </div>
@@ -46,13 +46,6 @@
                         <p class="text-lg font-bold text-gray-900 dark:text-white">{{ $sale->payment->nama_pembayaran }}
                         </p>
                     </div>
-                    <div>
-                        <p class="text-sm text-gray-500 dark:text-gray-400">Status</p>
-                        <span
-                            class="inline-flex items-center px-3 py-1 rounded-full text-sm font-bold bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-400">
-                            {{ $sale->status_transaksi }}
-                        </span>
-                    </div>
                 </div>
 
                 <!-- Order Items -->
@@ -70,7 +63,8 @@
                                     </div>
                                     <div>
                                         <p class="font-semibold text-gray-900 dark:text-white">
-                                            {{ $detail->stuff->nama_barang }}</p>
+                                            {{ $detail->stuff->nama_barang }}
+                                        </p>
                                         <p class="text-sm text-gray-500 dark:text-gray-400">
                                             {{ $detail->jumlah }} x Rp
                                             {{ number_format($detail->harga_satuan, 0, ',', '.') }}

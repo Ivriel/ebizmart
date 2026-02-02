@@ -14,12 +14,10 @@ class ProductListController extends Controller
     {
         $query = Stuff::with('category');
 
-        // 1 . logika search
         $query->when($request->search, function ($q) use ($request) {
             return $q->where('nama_barang', 'like', '%'.$request->search.'%');
         });
 
-        // logik sorting
         if ($request->sort == 'termurah') {
             $query->orderBy('harga_barang', 'asc');
         } elseif ($request->sort == 'termahal') {

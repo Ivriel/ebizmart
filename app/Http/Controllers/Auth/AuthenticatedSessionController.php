@@ -29,8 +29,7 @@ class AuthenticatedSessionController extends Controller
         $request->session()->regenerate();
 
         $user = Auth::user();
-        
-        // Redirect pelanggan ke product list, admin dan owner ke dashboard
+
         if ($user->role === 'pelanggan') {
             return redirect()->intended(route('productList.index', absolute: false));
         }

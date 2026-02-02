@@ -15,7 +15,7 @@ class DashboardController extends Controller
         $user = Auth::user();
 
         if ($user->role !== 'admin' && $user->role !== 'owner') {
-            return redirect('/');
+            return redirect()->route('productList.index');
         }
 
         $hour = now()->format('H');

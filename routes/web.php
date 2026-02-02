@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminSaleController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CheckoutController;
@@ -42,6 +43,12 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::post('/checkout', [CheckoutController::class, 'store'])->name('checkout.store');
     Route::get('/checkout/success/{id}', [CheckoutController::class, 'success'])->name('checkout.success');
 
+});
+
+Route::middleware(['auth', 'role:admin'])->prefix('admin')->name('admin.')->group(function () {
+    Route::get('/sales', [AdminSaleController::class, 'index'])->name('sales.index');
+    Route::get('/sales/{id}', [AdminSaleController::class, 'show'])->name('sales.show');
+    Route::patch('/sales/{id}/status', [AdminSaleController::class, 'updateStatus'])->name('sales.updateStatus');
 });
 
 Route::middleware('auth')->group(function () {

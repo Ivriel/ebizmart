@@ -103,12 +103,11 @@ class CheckoutController extends Controller
                 'user_id' => Auth::id(),
                 'tanggal' => Carbon::today(),
                 'total' => $total,
-                'status_transaksi' => 'Selesai', // Langsung Selesai sesuai permintaan
+                'status_transaksi' => 'Belum Bayar',
             ]);
 
-            // 2. Buat record di tabel detail_transactions dan kurangi stok
             foreach ($cartItems as $item) {
-                // Insert detail transaction
+
                 DetailTransaction::create([
                     'stuff_id' => $item['product']->id,
                     'sale_id' => $sale->id,
@@ -116,23 +115,12 @@ class CheckoutController extends Controller
                     'harga_satuan' => $item['price'],
                     'sub_total' => $item['subtotal'],
                 ]);
-
-                // Kurangi stok produk
-                $item['product']->decrement('stok_barang', $item['quantity']);
-
-                // Update status ketersediaan jika stok habis
-                $item['product']->refresh();
-                if ($item['product']->stok_barang == 0) {
-                    $item['product']->update(['status_ketersediaan' => 'Habis']);
-                }
             }
 
             DB::commit();
 
-            // Clear cart session
             session()->forget('cart');
 
-            // Redirect ke halaman sukses dengan sale ID
             return redirect()->route('checkout.success', $sale->id)->with('success', 'Pembayaran berhasil!');
 
         } catch (\Exception $e) {
@@ -150,7 +138,6 @@ class CheckoutController extends Controller
         $sale = Sale::with(['detailTransactions.stuff', 'payment', 'user'])
             ->findOrFail($id);
 
-        // Pastikan sale ini milik user yang login
         if ($sale->user_id !== Auth::id()) {
             abort(403);
         }
@@ -169,7 +156,6 @@ class CheckoutController extends Controller
         ];
 
         $pdf = Pdf::loadView('checkout.receipt', $data);
-        // Set ukuran kertas (opsional: khusus struk thermal biasanya 80mm x 200mm atau A4)
         $pdf->setPaper([0, 0, 600, 800], 'portrait');
 
         return $pdf->stream('struk-transaksi-'.$sale->id.'.pdf');

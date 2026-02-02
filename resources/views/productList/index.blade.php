@@ -5,7 +5,6 @@
                 <h2 class="font-black text-3xl text-gray-900 dark:text-white tracking-tight">
                     {{ __('Katalog Produk') }}
                 </h2>
-                <p class="text-sm text-gray-500 dark:text-gray-400 mt-1">Kelola dan pantau stok barang Anda dengan mudah.
                 </p>
     </x-slot>
 
@@ -112,8 +111,7 @@
                                 <span class="text-[10px] font-black text-indigo-500 uppercase tracking-[0.2em]">
                                     {{ $item->category->nama_kategori ?? 'Umum' }}
                                 </span>
-                                <h3
-                                    class="text-xl font-bold text-gray-900 dark:text-white mt-1 line-clamp-2 leading-tight">
+                                <h3 class="text-xl font-bold text-gray-900 dark:text-white mt-1 line-clamp-2 leading-tight">
                                     {{ $item->nama_barang }}
                                 </h3>
                             </div>
@@ -134,7 +132,8 @@
                                         </p>
                                         <p class="text-sm font-black text-gray-700 dark:text-gray-200">
                                             {{ $item->stok_barang }} <span
-                                                class="text-[10px] font-normal text-gray-400">Unit</span></p>
+                                                class="text-[10px] font-normal text-gray-400">Unit</span>
+                                        </p>
                                     </div>
                                 </div>
 
@@ -143,14 +142,11 @@
                                         class="col-span-2 py-3.5 bg-gray-100 dark:bg-gray-700 text-gray-900 dark:text-white text-xs font-bold rounded-xl text-center hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors">
                                         Detail
                                     </a>
-                                    <form action="{{ route('cart.add', $item->id) }}" method="POST"
-                                        class="col-span-3">
+                                    <form action="{{ route('cart.add', $item->id) }}" method="POST" class="col-span-3">
                                         @csrf
-                                        <button type="submit"
-                                            {{ $item->status_ketersediaan == 'Habis' || $item->stok_barang == 0 ? 'disabled' : '' }}
+                                        <button type="submit" {{ $item->status_ketersediaan == 'Habis' || $item->stok_barang == 0 ? 'disabled' : '' }}
                                             class="w-full py-3.5 bg-indigo-600 text-white text-xs font-bold rounded-xl shadow-lg shadow-indigo-500/30 hover:bg-indigo-700 disabled:opacity-50 disabled:shadow-none transition-all flex items-center justify-center gap-2">
-                                            <svg class="w-4 h-4" fill="none" stroke="currentColor"
-                                                viewBox="0 0 24 24">
+                                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                                     d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
                                             </svg>
@@ -162,6 +158,18 @@
                         </div>
                     </div>
                 @empty
+                    <div class="col-span-full py-20 flex flex-col items-center justify-center text-center">
+                        <div class="bg-gray-100 dark:bg-gray-800 p-8 rounded-full mb-6">
+                            <svg class="w-16 h-16 text-gray-400 dark:text-gray-600" fill="none" stroke="currentColor"
+                                viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                                    d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2.586a1 1 0 00-.707.293l-2.414 2.414a1 1 0 01-.707.293h-3.172a1 1 0 01-.707-.293l-2.414-2.414A1 1 0 006.586 13H4" />
+                            </svg>
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-2">
+                            Produk tidak ditemukan
+                        </h3>
+                    </div>
                 @endforelse
             </div>
             <div class="mt-10">

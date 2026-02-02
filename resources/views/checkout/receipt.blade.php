@@ -42,7 +42,8 @@
     <p>
         No. Struk : {{ $sale->id }}<br>
         Atas nama : {{ $sale->user->nama_user }}<br>
-        Tanggal : {{ \Carbon\Carbon::parse($sale->tanggal)->format('d/m/Y H:i:s') }}
+        Tanggal : {{ \Carbon\Carbon::parse($sale->tanggal)->format('d/m/Y H:i:s') }}<br>
+        Status Pembayaran : {{ $sale->status_transaksi }}
     </p>
     <hr>
 

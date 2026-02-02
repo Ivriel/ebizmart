@@ -29,6 +29,7 @@
                         <th class="px-6 py-3">Nama Barang</th>
                         <th class="px-6 py-3">Stok</th>
                         <th class="px-6 py-3">Status</th>
+                        <th class="px-6 py-3">Detail</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -36,12 +37,16 @@
                         <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                             <td class="px-6 py-4 font-medium text-gray-900 dark:text-white">{{ $item->nama_barang }}</td>
                             <td class="px-6 py-4 {{ $item->stok_barang < 5 ? 'text-red-500 font-bold' : '' }}">
-                                {{ $item->stok_barang }}</td>
+                                {{ $item->stok_barang }}
+                            </td>
                             <td class="px-6 py-4">
                                 <span
                                     class="px-2 py-1 rounded text-xs {{ $item->status_ketersediaan == 'Tersedia' ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800' }}">
                                     {{ $item->status_ketersediaan }}
                                 </span>
+                            </td>
+                            <td class="px-6 py-4 font-medium text-gray-900 dark:text-white">
+                                <a href="{{ route('productList.show', $item->id) }}">Detail</a>
                             </td>
                         </tr>
                     @endforeach
