@@ -32,6 +32,7 @@ class DashboardController extends Controller
             'stok_tipis' => Stuff::where('stok_barang', '<', 5)->count(),
             'total_user' => User::count(),
             'barang_terbaru' => Stuff::latest()->take(5)->get(),
+            'transaksi_terbaru' => Sale::latest()->take(5)->get(),
             'total_transaksi' => Sale::count(),
             'total_penjualan' => Sale::sum('total'),
             'total_metode_pembayaran' => Payment::count(),

@@ -55,3 +55,43 @@
         </div>
     </div>
 </div>
+
+<div class="bg-white dark:bg-gray-800 mt-5 overflow-hidden shadow-sm sm:rounded-lg">
+    <div class="p-6">
+        <div class="flex justify-between items-center mb-4">
+            <h3 class="text-lg font-medium text-gray-900 dark:text-gray-100">Update Transaksi Terakhir</h3>
+            <a href="{{ url('/sales') }}" class="text-sm text-blue-500 hover:underline">Kelola Semua Transaksi
+                &rarr;</a>
+        </div>
+        <div class="relative overflow-x-auto">
+            <table class="w-full text-sm text-left text-gray-500">
+                <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                    <tr>
+                        <th class="px-6 py-3">Tanggal</th>
+                        <th class="px-6 py-3">Customer</th>
+                        <th class="px-6 py-3">Total</th>
+                        <th class="px-6 py-3">Detail</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach($transaksi_terbaru as $transaction)
+                        <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                            <td class="px-6 py-4 font-medium text-gray-900 dark:text-white">
+                                {{ \Carbon\Carbon::parse($transaction->tanggal)->format('d F Y H:i:s') }}
+                            </td>
+                            <td class="px-6 py-4">
+                                {{ $transaction->user->nama_user }}
+                            </td>
+                            <td class="px-6 py-4">
+                                Rp {{ number_format($transaction->total, 0, ',', '.') }}
+                            </td>
+                            <td class="px-6 py-4 font-medium text-gray-900 dark:text-white">
+                                <a href="{{ route('admin.sales.show', $item->id) }}">Detail</a>
+                            </td>
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

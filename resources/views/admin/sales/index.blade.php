@@ -85,9 +85,9 @@
                                             {{ \Carbon\Carbon::parse($sale->tanggal)->format('d/m/Y') }}
                                         </td>
                                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-gray-100">
-                                            {{ $sale->user->name }}</td>
+                                            {{ $sale->user->nama_user }}</td>
                                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-gray-100">
-                                            {{ $sale->payment->nama_payment }}</td>
+                                            {{ $sale->payment->nama_pembayaran }}</td>
                                         <td
                                             class="px-6 py-4 whitespace-nowrap text-sm font-semibold text-gray-900 dark:text-gray-100">
                                             Rp {{ number_format($sale->total, 0, ',', '.') }}

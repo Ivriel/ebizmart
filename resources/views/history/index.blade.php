@@ -4,7 +4,7 @@
             @if (auth()->guard()->user()->role === 'pelanggan')
                 History Pembelian
             @else
-                History Penjualaan
+                History Penjualan
             @endif
         </h2>
     </x-slot>
@@ -34,7 +34,7 @@
                                             {{ $sale->id }}
                                         </td>
                                         <td class="px-6 py-4">
-                                            {{ \Carbon\Carbon::parse($sale->tanggal)->format('d M Y') }}
+                                            {{ \Carbon\Carbon::parse($sale->tanggal)->format('d M Y H:i:s') }}
                                         </td>
                                         <td class="px-6 py-4">
                                             {{ $sale->user->nama_user ?? 'User Terhapus' }}
