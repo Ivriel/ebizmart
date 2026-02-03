@@ -12,6 +12,31 @@
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
+                <div class="mx-6 mt-2">
+                    <form method="GET" action="{{ route('history.index') }}" class="flex gap-2">
+                        <select name="status" onchange="this.form.submit()"
+                            class="border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm">
+                            <option value="">Semua Status</option>
+                            <option value="Belum Bayar" {{ request('status') == 'Belum Bayar' ? 'selected' : '' }}>
+                                Belum Bayar</option>
+                            <option value="Dalam Proses" {{ request('status') == 'Dalam Proses' ? 'selected' : '' }}>
+                                Dalam Proses</option>
+                            <option value="Selesai" {{ request('status') == 'Selesai' ? 'selected' : '' }}>Selesai
+                            </option>
+                            <option value="Gagal" {{ request('status') == 'Gagal' ? 'selected' : '' }}>Gagal</option>
+                        </select>
+                        <button type="submit"
+                            class="bg-blue-600 dark:bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-700 dark:hover:bg-blue-600 transition">
+                            Filter
+                        </button>
+                        @if(request('status'))
+                            <a href="{{ route('admin.sales.index') }}"
+                                class="bg-gray-500 dark:bg-gray-600 text-white px-4 py-2 rounded hover:bg-gray-600 dark:hover:bg-gray-500 transition">
+                                Reset
+                            </a>
+                        @endif
+                    </form>
+                </div>
                 <div class="p-6 text-gray-900 dark:text-gray-100">
                     <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
                         <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
