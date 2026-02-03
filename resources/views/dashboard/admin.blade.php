@@ -60,7 +60,8 @@
     <div class="p-6">
         <div class="flex justify-between items-center mb-4">
             <h3 class="text-lg font-medium text-gray-900 dark:text-gray-100">Update Transaksi Terakhir</h3>
-            <a href="{{ url('/sales') }}" class="text-sm text-blue-500 hover:underline">Kelola Semua Transaksi
+            <a href="{{ route('admin.sales.index') }}" class="text-sm text-blue-500 hover:underline">Kelola Semua
+                Transaksi
                 &rarr;</a>
         </div>
         <div class="relative overflow-x-auto">
