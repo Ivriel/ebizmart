@@ -1,11 +1,8 @@
 <x-app-layout>
     <x-slot name="header">
-        <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 py-4">
-            <div:::>
-                <h2 class="font-black text-3xl text-gray-900 dark:text-white tracking-tight">
-                    {{ __('Katalog Produk') }}
-                </h2>
-                </p>
+        <h2 class="font-black text-3xl text-gray-900 dark:text-white tracking-tight">
+            {{ __('Katalog Produk') }}
+        </h2>
     </x-slot>
 
     <div class="my-8 mx-4 flex flex-col md:flex-row gap-4 text-white">

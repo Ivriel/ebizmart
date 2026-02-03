@@ -11,9 +11,9 @@ class HistoryTransactionController extends Controller
     {
         $user = auth()->guard()->user();
         if ($user->role === 'pelanggan') {
-            $sales = Sale::with(['payment', 'user'])->where('user_id', $user->id)->latest()->get();
+            $sales = Sale::with(['payment', 'user'])->where('user_id', $user->id)->latest()->paginate(10);
         } else {
-            $sales = Sale::with(['payment', 'user'])->latest()->get();
+            $sales = Sale::with(['payment', 'user'])->latest()->paginate(10);
         }
 
         return view('history.index', [

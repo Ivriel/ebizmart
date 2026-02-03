@@ -17,7 +17,7 @@ class AdminSaleController extends Controller
                 return $query->where('status_transaksi', $status);
             })
             ->orderBy('created_at', 'desc')
-            ->paginate(20);
+            ->paginate(10);
 
         return view('admin.sales.index', compact('sales', 'status'));
     }
