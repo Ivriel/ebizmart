@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\Stuff;
 use Illuminate\Http\Request;
 
@@ -13,6 +14,7 @@ class ProductListController extends Controller
     public function index(Request $request)
     {
         $query = Stuff::with('category');
+        $category = Category::all();
 
         $query->when($request->search, function ($q) use ($request) {
             return $q->where('nama_barang', 'like', '%'.$request->search.'%');
@@ -22,6 +24,8 @@ class ProductListController extends Controller
             $query->orderBy('harga_barang', 'asc');
         } elseif ($request->sort == 'termahal') {
             $query->orderBy('harga_barang', 'desc');
+        } elseif ($request->category) {
+            $query->where('category_id', $request->category);
         } else {
             $query->latest(); // defaultnya produk terbaru
         }
@@ -30,6 +34,7 @@ class ProductListController extends Controller
 
         return view('productList.index', [
             'products' => $products,
+            'category' => $category,
         ]);
     }
 

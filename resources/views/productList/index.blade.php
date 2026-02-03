@@ -13,6 +13,9 @@
             <input type="text" name="search" value="{{ request('search') }}" placeholder="Cari produk favoritmu..."
                 class="w-full rounded-xl border-gray-200 dark:bg-gray-800 dark:border-gray-700">
             <button type="submit" class="bg-indigo-600 text-white px-6 py-2 rounded-xl">Cari</button>
+            @if (request('search') || request('sort') || request('category'))
+                <a href="{{ route('productList.index') }}" class="bg-indigo-600 text-white px-6 py-2 rounded-xl">Reset</a>
+            @endif
         </form>
 
         <form action="{{ route('productList.index') }}" method="GET">
@@ -22,6 +25,15 @@
                 <option value="">Terbaru</option>
                 <option value="termurah" {{ request('sort') == 'termurah' ? 'selected' : '' }}>Harga Termurah</option>
                 <option value="termahal" {{ request('sort') == 'termahal' ? 'selected' : '' }}>Harga Termahal</option>
+            </select>
+            <select name="category" onchange="this.form.submit()"
+                class="rounded-xl border-gray-200 dark:bg-gray-800 dark:border-gray-700">
+                <option value="">Semua Kategori</option>
+                @foreach ($category as $item)
+                    <option value="{{ $item->id }}" {{ request('category') == $item->id ? 'selected' : '' }}>
+                        {{ $item->nama_kategori }}
+                    </option>
+                @endforeach
             </select>
         </form>
     </div>
