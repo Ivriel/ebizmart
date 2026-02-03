@@ -22,7 +22,7 @@
                     <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
                         <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                             <tr>
-                                <th scope="col" class="px-6 py-4 font-bold uppercase tracking-wider">No</th>
+                                <th scope="col" class="px-6 py-4 font-bold uppercase tracking-wider">ID</th>
                                 <th scope="col" class="px-6 py-4 font-bold uppercase tracking-wider">Nama Kategori</th>
                                 <th scope="col" class="px-6 py-4 font-bold uppercase tracking-wider">Tanggal Dibuat</th>
                                 <th scope="col" class="px-6 py-4 text-center font-bold uppercase tracking-wider">Aksi
@@ -34,7 +34,7 @@
                                 <tr
                                     class="bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors">
                                     <td class="px-6 py-4 whitespace-nowrap font-medium text-gray-900 dark:text-white">
-                                        {{ $loop->iteration }}
+                                        #{{ $category->id }}
                                     </td>
                                     <td class="px-6 py-4 whitespace-nowrap text-gray-700 dark:text-gray-300">
                                         {{ $category->nama_kategori }}

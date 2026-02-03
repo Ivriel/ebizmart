@@ -22,7 +22,7 @@
                     <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
                         <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                             <tr>
-                                <th scope="col" class="px-6 py-4 font-bold">No</th>
+                                <th scope="col" class="px-6 py-4 font-bold">ID</th>
                                 <th scope="col" class="px-6 py-4 font-bold">Gambar</th>
                                 <th scope="col" class="px-6 py-4 font-bold">Nama Barang</th>
                                 <th scope="col" class="px-6 py-4 font-bold">Kategori</th>
@@ -37,7 +37,7 @@
                                 <tr
                                     class="bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-700/40 transition-colors">
                                     <td class="px-6 py-4 whitespace-nowrap font-medium text-gray-900 dark:text-white">
-                                        {{ $loop->iteration }}
+                                        #{{ $product->id }}
                                     </td>
                                     <td class="px-6 py-4 whitespace-nowrap">
                                         @if($product->image)

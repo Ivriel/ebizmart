@@ -18,7 +18,7 @@
                             <thead
                                 class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                                 <tr>
-                                    <th class="px-6 py-3">ID Transaksi</th>
+                                    <th class="px-6 py-3">ID</th>
                                     <th class="px-6 py-3">Tanggal</th>
                                     <th class="px-6 py-3">Pelanggan</th>
                                     <th class="px-6 py-3">Total</th>
@@ -31,7 +31,7 @@
                                     <tr
                                         class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                                         <td class="px-6 py-4 font-bold text-gray-900 dark:text-white">
-                                            {{ $sale->id }}
+                                            #{{ $sale->id }}
                                         </td>
                                         <td class="px-6 py-4">
                                             {{ \Carbon\Carbon::parse($sale->tanggal)->format('d M Y H:i:s') }}
