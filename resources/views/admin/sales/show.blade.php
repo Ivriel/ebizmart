@@ -142,6 +142,13 @@
                         </form>
 
                         <div class="mt-4">
+                            <a href="{{ route('checkout.print', $sale->id) }}" target="_blank"
+                                class="block text-center w-full bg-gray-500 dark:bg-gray-600 hover:bg-gray-600 dark:hover:bg-gray-700 text-white font-semibold py-2 px-4 rounded transition">
+                                Cetak Invoice
+                            </a>
+                        </div>
+
+                        <div class="mt-4">
                             <a href="{{ route('admin.sales.index') }}"
                                 class="block text-center w-full bg-gray-500 dark:bg-gray-600 hover:bg-gray-600 dark:hover:bg-gray-700 text-white font-semibold py-2 px-4 rounded transition">
                                 Kembali ke Daftar

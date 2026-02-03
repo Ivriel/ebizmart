@@ -1,7 +1,11 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            {{ __('My Wishlist') }}
+            @if (auth()->user()->role === 'pelanggan')
+                {{ __('My Wishlist') }}
+            @else
+                {{ __('User Wishlist') }}
+            @endif
         </h2>
     </x-slot>
 

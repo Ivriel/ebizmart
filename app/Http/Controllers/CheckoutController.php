@@ -101,7 +101,7 @@ class CheckoutController extends Controller
             $sale = Sale::create([
                 'payment_id' => $validated['payment_id'],
                 'user_id' => Auth::id(),
-                'tanggal' => Carbon::today(),
+                'tanggal' => Carbon::now(),
                 'total' => $total,
                 'status_transaksi' => 'Belum Bayar',
             ]);

@@ -25,7 +25,7 @@
                 <div class="p-6">
                     <div class="mb-6">
                         <form method="GET" action="{{ route('admin.sales.index') }}" class="flex gap-2">
-                            <select name="status"
+                            <select name="status" onchange="this.form.submit()"
                                 class="border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm">
                                 <option value="">Semua Status</option>
                                 <option value="Belum Bayar" {{ request('status') == 'Belum Bayar' ? 'selected' : '' }}>

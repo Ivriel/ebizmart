@@ -41,9 +41,8 @@
 
     <p>
         No. Struk : {{ $sale->id }}<br>
-        Atas nama : {{ $sale->user->nama_user }}<br>
+        Nama Pelanggan : {{ $sale->user->nama_user }}<br>
         Tanggal : {{ \Carbon\Carbon::parse($sale->tanggal)->format('d/m/Y H:i:s') }}<br>
-        Status Pembayaran : {{ $sale->status_transaksi }}
     </p>
     <hr>
 
@@ -73,6 +72,14 @@
         <tr>
             <td class="text-right"><strong>TOTAL:</strong></td>
             <td class="text-right"><strong>Rp {{ number_format($sale->total, 0, ',', '.') }}</strong></td>
+        </tr>
+        <tr>
+            <td class="text-right">Metode Pembayaran:</td>
+            <td class="text-right">{{ $sale->payment->nama_pembayaran }}</td>
+        </tr>
+        <tr>
+            <td class="text-right">Status Transaksi:</td>
+            <td class="text-right">{{ $sale->status_transaksi }}</td>
         </tr>
     </table>
 

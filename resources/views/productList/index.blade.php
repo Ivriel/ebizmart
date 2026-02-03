@@ -173,7 +173,6 @@
                 @endforelse
             </div>
             <div class="mt-10">
-                Test
                 {{ $products->links() }}
             </div>
         </div>
